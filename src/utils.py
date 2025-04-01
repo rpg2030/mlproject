@@ -22,6 +22,16 @@ def save_object(file_path,obj):
     except Exception as e:
         raise CustomException(e,sys)
     
+def load_object(file_path):
+    '''
+    This will read the pkl file.
+    '''
+    try:
+        with open(file_path,"rb") as file_obj:
+            return dill.load(file_obj)
+    except Exception as e:
+        raise CustomException(e,sys)
+    
 def evaluate_model(X_train,y_train,X_test,y_test,models):
     try:
         logging.info("start the models training")
@@ -44,6 +54,9 @@ def evaluate_model(X_train,y_train,X_test,y_test,models):
         raise CustomException(e,sys)
     
 def hyperparameter_tuning(model_list,X_train,y_train,X_test,y_test):
+    '''
+    This will do Hyperparameter tuning.
+    '''
     try:
         param_grid = {
             "CatBoostRegressor": {
@@ -112,6 +125,9 @@ def hyperparameter_tuning(model_list,X_train,y_train,X_test,y_test):
     
     
 def get_best_model(model_report,models,X_train,y_train,X_test,y_test):
+    '''
+    This will give the best model after hyperparameter tuning and without hyperparameter tuning.
+    '''
     logging.info("get the model which have highest score.")
     model_list = []
     
