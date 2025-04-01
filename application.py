@@ -3,6 +3,7 @@ from src.pipeline.predict_pipeline import CustomData,PredictPipeline
 
 application = Flask(__name__)
 
+app = application
 
 ## Route for home page
 
@@ -32,4 +33,4 @@ def predict_data():
     
 
 if __name__ == '__main__':
-    application.run(host='0.0.0.0')    
+    app.run(host='0.0.0.0')    
